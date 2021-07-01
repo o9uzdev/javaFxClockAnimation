@@ -19,7 +19,7 @@ public class ClockPane extends Pane {
         this.second = second;
     }
 
-    public String getTimeString(){
+    public String getTimeString() {
         // TO-DO
         return "";
     }
@@ -29,6 +29,22 @@ public class ClockPane extends Pane {
         hour = now.getHour();
         minute = now.getMinute();
         second = now.getSecond();
-        //paintClock();
+        paintClock();
+    }
+
+    private void paintClock() {
+
+    }
+
+    @Override
+    protected void setWidth(double value) {
+        super.setWidth(value);
+        paintClock();
+    }
+
+    @Override
+    protected void setHeight(double value) {
+        super.setHeight(value);
+        paintClock();
     }
 }
