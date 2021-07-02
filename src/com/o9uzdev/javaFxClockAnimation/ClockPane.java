@@ -19,6 +19,33 @@ public class ClockPane extends Pane {
         this.second = second;
     }
 
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+        paintClock();
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+        paintClock();
+    }
+
+    public int getSecond() {
+        return second;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
+        paintClock();
+    }
+
     public String getTimeString() {
         // TO-DO
         return "";
