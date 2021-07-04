@@ -4,6 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 
 import java.time.LocalDateTime;
@@ -65,19 +66,28 @@ public class ClockPane extends Pane {
 
     private void paintClock() {
         double clockRadius = Math.min(getHeight(), getWidth()) * 0.5 * 0.8;
-        double centerX = getWidth()/2;
-        double centerY = getHeight()/2;
+        double centerX = getWidth() / 2;
+        double centerY = getHeight() / 2;
 
         Circle circle = new Circle(centerX, centerY, clockRadius);
         circle.setFill(Color.WHITE);
         circle.setStroke(Color.BLACK);
 
-        Text t1 = new Text(centerX-5, centerY-clockRadius+15, "12");
+        Text t1 = new Text(centerX - 5, centerY - clockRadius + 15, "12");
         Text t2 = new Text(centerX - clockRadius + 5, centerY + 5, "9");
         Text t3 = new Text(centerX + clockRadius - 10, centerY + 5, "3");
-        Text t4 = new Text(centerX-5, centerY+clockRadius - 5, "6");
+        Text t4 = new Text(centerX - 5, centerY + clockRadius - 5, "6");
         Group textGroup = new Group();
-        textGroup.getChildren().addAll(t1,t2,t3,t4);
+        textGroup.getChildren().addAll(t1, t2, t3, t4);
+
+        double secondLength = clockRadius * 0.8;
+        double secondX = centerX + secondLength * Math.sin(second * 2 * Math.PI / 60.0);
+        double secondY = centerY - secondLength * Math.cos(second * 2 * Math.PI / 60.0);
+        Line secondLine = new Line(centerX, centerY, secondX, secondY);
+        secondLine.setStroke(Color.GREEN);
+
+        getChildren().clear();
+        getChildren().addAll(circle, textGroup, secondLine);
     }
 
     @Override
