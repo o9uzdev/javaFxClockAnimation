@@ -86,8 +86,22 @@ public class ClockPane extends Pane {
         Line secondLine = new Line(centerX, centerY, secondX, secondY);
         secondLine.setStroke(Color.GREEN);
 
+        double minuteLength = clockRadius * 0.65;
+        double minuteX = centerX + minuteLength * Math.sin(minute * 2 * Math.PI / 60.0);
+        double minuteY = centerY - minuteLength * Math.cos(minute * 2 * Math.PI / 60.0);
+        Line minuteLine = new Line(centerX, centerY, minuteX, minuteY);
+        minuteLine.setStroke(Color.RED);
+        minuteLine.setStrokeWidth(2);
+
+        double hourLength = clockRadius * 0.5;
+        double hourX = centerX + hourLength * Math.sin((hour % 12 + minute / 60.0) * 2 * Math.PI / 12.0);
+        double hourY = centerY - hourLength * Math.cos((hour % 12 + minute / 60.0) * 2 * Math.PI / 12.0);
+        Line hourLine = new Line(centerX, centerY, hourX, hourY);
+        hourLine.setStroke(Color.BLUE);
+        hourLine.setStrokeWidth(2);
+
         getChildren().clear();
-        getChildren().addAll(circle, textGroup, secondLine);
+        getChildren().addAll(circle, textGroup, secondLine, minuteLine, hourLine);
     }
 
     @Override
