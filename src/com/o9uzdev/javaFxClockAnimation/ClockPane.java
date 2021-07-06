@@ -52,8 +52,7 @@ public class ClockPane extends Pane {
     }
 
     public String getTimeString() {
-        // TO-DO
-        return "";
+        return getHour()+":"+getMinute()+":"+getSecond();
     }
 
     void setCurrentTime() {
